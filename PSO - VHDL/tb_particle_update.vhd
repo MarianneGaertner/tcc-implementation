@@ -9,23 +9,23 @@ architecture behavior of tb_particle_update is
 	component PARTICLE_UPDATE
 		generic(
 			FRACTION_BITS : natural := 20;
-         NUM_ELEM : natural := 4;
-         DATA_WIDTH : natural := 32);
+	        NUM_ELEM : natural := 4;
+	        DATA_WIDTH : natural := 32);
 		port(
 			en, CLK, RESET : in std_logic;
         
-		   current_pos: in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
-         current_velocity : in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
-		   best_personal_pos : in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
-         best_global_pos : in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
+		    current_pos: in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
+         	current_velocity : in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
+		   	best_personal_pos : in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
+         	best_global_pos : in std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
         
-		   r1, r2: in std_logic_vector(NUM_ELEM*FRACTION_BITS-1 downto 0);
-         c1, c2: in std_logic_vector(DATA_WIDTH-1 downto 0);
-         w : in std_logic_vector(DATA_WIDTH-1 downto 0);
+		   	r1, r2: in std_logic_vector(NUM_ELEM*FRACTION_BITS-1 downto 0);
+         	c1, c2: in std_logic_vector(DATA_WIDTH-1 downto 0);
+         	w : in std_logic_vector(DATA_WIDTH-1 downto 0);
         
-         new_pos : out std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
-         new_velocity : out std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
-         finish : out std_logic);
+		 	new_pos : out std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
+		 	new_velocity : out std_logic_vector(NUM_ELEM*DATA_WIDTH-1 downto 0);
+		 	finish : out std_logic);
 	 end component;
 	
 	constant T: time := 20 ns;
@@ -56,14 +56,14 @@ begin
 				  port map(en, CLK, RESET, current_pos,current_velocity, best_personal_pos, best_global_pos, r1, r2,c1, c2, w, new_pos, new_velocity, finish);
 	
 	v0 <= signed(new_velocity(31 downto 0));
-   v1 <= signed(new_velocity(63 downto 32));
+   	v1 <= signed(new_velocity(63 downto 32));
 	v2 <= signed(new_velocity(95 downto 64));
 	v3 <= signed(new_velocity(127 downto 96));
 
-   p0 <= signed(new_pos(31 downto 0));
+   	p0 <= signed(new_pos(31 downto 0));
 	p1 <= signed(new_pos(63 downto 32));
-   p2 <= signed(new_pos(95 downto 64));
-   p3 <= signed(new_pos(127 downto 96));
+   	p2 <= signed(new_pos(95 downto 64));
+   	p3 <= signed(new_pos(127 downto 96));
 		
 	process
 	begin 
@@ -81,20 +81,9 @@ begin
 		RESET <='1';
 		
 		w <= std_logic_vector(to_signed(734003, DATA_WIDTH));
-      c1 <= std_logic_vector(to_signed(1468006, DATA_WIDTH));
-      c2 <= std_logic_vector(to_signed(1468006, DATA_WIDTH));
+      	c1 <= std_logic_vector(to_signed(1468006, DATA_WIDTH));
+      	c2 <= std_logic_vector(to_signed(1468006, DATA_WIDTH));
 		
---		r1 <= std_logic_vector(to_unsigned(726718, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(887647, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(443823, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(221911, FRACTION_BITS));
---				
---	
---		r2 <= std_logic_vector(to_unsigned(93159, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(570867, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(809721, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(404860, FRACTION_BITS));
---	
 		r1 <= std_logic_vector(to_unsigned(441982, FRACTION_BITS)) & 
             std_logic_vector(to_unsigned(745279, FRACTION_BITS)) & 
             std_logic_vector(to_unsigned(372639, FRACTION_BITS)) & 
@@ -132,28 +121,17 @@ begin
 	
 		
 		wait for 2*T;
-		
 		en <= '1';
 		wait for T; 
 		en <= '0';
 		  
-		  
 		wait until finish = '1';
 		  
 		wait for 2*T; 
-		-- it 51
+		
+		------ iteracao 51
 		current_pos <= new_pos;
 		current_velocity <= new_velocity;
---		r1 <= std_logic_vector(to_unsigned(441982, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(745279, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(372639, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(186319, FRACTION_BITS));
---				
---	
---		r2 <= std_logic_vector(to_unsigned(780267, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(390133, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(719354, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(883965, FRACTION_BITS));
 
 		r1 <= std_logic_vector(to_unsigned(949948, FRACTION_BITS)) & 
 			std_logic_vector(to_unsigned(999262, FRACTION_BITS)) & 
@@ -166,30 +144,19 @@ begin
 			   std_logic_vector(to_unsigned(654065, FRACTION_BITS)) & 
 			   std_logic_vector(to_unsigned(851320, FRACTION_BITS));
 	
-		wait for 2*T;
-		
+		wait for 2*T;	
 		en <= '1';
 		wait for T; 
 		en <= '0';
-		  
-		  
+		   
 		wait until finish = '1';
 		  
 		wait for 2*T; 
 		
-		--it 52
+		--iteracao 52
 		current_pos <= new_pos;
 		current_velocity <= new_velocity;
---		r1 <= std_logic_vector(to_unsigned(949948, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(999262, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(1023919, FRACTION_BITS)) & 
---            std_logic_vector(to_unsigned(511959, FRACTION_BITS));
---				
---	
---		r2 <= std_logic_vector(to_unsigned(519110, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(259555, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(654065, FRACTION_BITS)) & 
---			   std_logic_vector(to_unsigned(851320, FRACTION_BITS));
+
 		r1 <= std_logic_vector(to_unsigned(965738, FRACTION_BITS)) & 
             std_logic_vector(to_unsigned(1007157, FRACTION_BITS)) & 
             std_logic_vector(to_unsigned(1027866, FRACTION_BITS)) & 
@@ -200,18 +167,18 @@ begin
 			   std_logic_vector(to_unsigned(385877, FRACTION_BITS)) & 
 			   std_logic_vector(to_unsigned(717226, FRACTION_BITS)) & 
 			   std_logic_vector(to_unsigned(882901, FRACTION_BITS));
+
 		wait for 2*T;
 		
 		en <= '1';
 		wait for T; 
 		en <= '0';
-		  
-		  
+		  		  
 		wait until finish = '1';
 		  
 		wait for 2*T; 
 		
-		-- it 53
+		-- iteracao 53
 		current_pos <= new_pos;
 		current_velocity <= new_velocity;
 
@@ -248,15 +215,8 @@ begin
 		wait until finish = '1';
 		  
 		wait for 2*T; 
-		
---		
-		
-		
-		assert false report "Simulation completed" severity failure;
-									
-		
-		
-	end process;
-				  
 
+		assert false report "Simulation completed" severity failure;
+										
+	end process;
 end behavior;
