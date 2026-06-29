@@ -89,14 +89,13 @@ begin
 			  std_logic_vector(to_signed(0, DATA_WIDTH))     &  -- x1(1) -> indiferente
 			  std_logic_vector(to_signed(1572864, DATA_WIDTH));   -- x1(0) = 1.5
               
-	  x2 <= std_logic_vector(to_signed(4194304, DATA_WIDTH)) &  -- x2(3) = 4.0
-		  std_logic_vector(to_signed(3145728, DATA_WIDTH)) &  -- x2(2) = 3.0
-		  std_logic_vector(to_signed(2097152, DATA_WIDTH)) &  -- x2(1) = 2.0
-		  std_logic_vector(to_signed(1048576, DATA_WIDTH));   -- x2(0) = 1.0
+	  	x2 <= std_logic_vector(to_signed(4194304, DATA_WIDTH)) &  -- x2(3) = 4.0
+			  std_logic_vector(to_signed(3145728, DATA_WIDTH)) &  -- x2(2) = 3.0
+			  std_logic_vector(to_signed(2097152, DATA_WIDTH)) &  -- x2(1) = 2.0
+			  std_logic_vector(to_signed(1048576, DATA_WIDTH));   -- x2(0) = 1.0
 
         wait until finish = '1';
-		  wait for T*4;
-		  
+		wait for T*4;		  
 		  
 		assert false report "Simulation completed" severity failure;
 									
