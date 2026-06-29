@@ -12,8 +12,8 @@ architecture behavior of tb_data_memory is
 		ADDR_WIDTH: integer := 8;
 		DATA_WIDTH  : integer := 32;
 		NUM_SAMPLES: natural := 200;
-		X_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_x.mif";
-		Y_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_y.mif"
+		X_FILE_NAME: string  := "../DadosGerados/dados_simulacao_x.mif";
+		Y_FILE_NAME: string  := "../DadosGerados/dados_simulacao_y.mif"
 		);	
 		port(
 			CLK: in std_logic;
@@ -28,8 +28,8 @@ architecture behavior of tb_data_memory is
 	constant ADDR_WIDTH: integer :=8;
 	constant DATA_WIDTH  : integer := 32;
 	constant NUM_SAMPLES: natural := 200;
-	constant X_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_x.mif";
-	constant Y_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_y.mif";
+	constant X_FILE_NAME: string  := "../DadosGerados/dados_simulacao_x.mif";
+	constant Y_FILE_NAME: string  := "../DadosGerados/dados_simulacao_y.mif";
 	
 	signal CLK: std_logic := '0';
 	signal RESET: std_logic :='0';
