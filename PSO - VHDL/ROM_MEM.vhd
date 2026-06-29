@@ -5,18 +5,16 @@ use std.textio.all;
 
 
 entity ROM_MEM is
-		generic(
+	generic(
 		ADDR_WIDTH: integer := 8;
 		DATA_WIDTH: integer := 32;
 		NUM_SAMPLES: integer := 200;
-		DATA_FILE_NAME: string := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_3_x.mif");
-		
-		
+		DATA_FILE_NAME: string := "../DadosGerados/dados_simulacao_x.mif"
+	);
 	port(
-		--CLK: in std_logic;
 		ADDR: in std_logic_vector((ADDR_WIDTH-1) downto 0);
-		DATA_OUT: out std_logic_vector((DATA_WIDTH-1) downto 0));
-		
+		DATA_OUT: out std_logic_vector((DATA_WIDTH-1) downto 0)
+	);
 end ROM_MEM;
 
 
