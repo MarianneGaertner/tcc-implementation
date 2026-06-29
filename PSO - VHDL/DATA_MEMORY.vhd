@@ -10,8 +10,8 @@ entity DATA_MEMORY is
 		ADDR_WIDTH: integer := 8;
 		DATA_WIDTH  : integer := 32;
 		NUM_SAMPLES: natural := 200;
-		X_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_x.mif";
-		Y_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_y.mif"
+		X_FILE_NAME: string  := "../DadosGerados/dados_simulacao_x.mif";
+		Y_FILE_NAME: string  := "../DadosGerados/dados_simulacao_y.mif"
 		);
 		
 	port(
@@ -29,11 +29,6 @@ end DATA_MEMORY;
 architecture behavior of DATA_MEMORY is
 
 	signal s_addr: std_logic_vector((ADDR_WIDTH-1) downto 0);
-	--signal s_finish: std_logic := '0';
-	
-	--constant IMG_SIZE: integer := 200;
-	--constant X_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_x.mif";
-	--constant Y_FILE_NAME: string  := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_4_y.mif";
 
 --- Declaração dos componentes-------------------------------------
 	component ROM_MEM
@@ -41,9 +36,8 @@ architecture behavior of DATA_MEMORY is
 			ADDR_WIDTH: integer := 8;
 			DATA_WIDTH: integer := 32;
 			NUM_SAMPLES: integer := 200;
-			DATA_FILE_NAME: string := "C:/Users/maria/OneDrive/Documents/TCC/dados_simulacao_3_x.mif");
+			DATA_FILE_NAME: string := "../DadosGerados/dados_simulacao_x.mif");
 		port(
-			--CLK: in std_logic;
 			ADDR: in std_logic_vector((ADDR_WIDTH-1) downto 0);
 			DATA_OUT: out std_logic_vector((DATA_WIDTH-1) downto 0));
 	end component;
